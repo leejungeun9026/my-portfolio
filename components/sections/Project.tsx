@@ -1,36 +1,49 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { ExternalLink, Github, GithubIcon, Link, Search } from "lucide-react";
+
 const projectList = [
   {
-    link: "",
-    github: "",
+    link: "https://",
+    github: "https://github.com/leejungeun9026/tarotfront",
     img: [],
     type: "개인",
     title: "스프링부트-리액트 웹 프로젝트",
     name: "타로버블팁",
-    info: "개인 질문에 따라 타로 카드를 선택하고, 카드 조합에 대한 해석을 ChatGPT 기반으로 제공하는 웹 서비스입니다.",
+    overview: "개인 질문에 따라 타로 카드를 선택하고, 카드 조합에 대한 해석을 ChatGPT 기반으로 제공하는 웹 서비스입니다.",
     goal: [
-      "사용자의 자유로운 질문을 입력으로 받아, 카드 조합에 따라 AI가 맞춤형 해석을 제공하는 구조를 서비스로 구현",
-      "인터랙티브한 카드 선택 UI를 통해 사용자 몰입도를 높이는 경험 설계",
+      "사용자의 자유로운 질문을 입력으로 받아, 질문과 카드에 맞는 맞춤형 해석을 AI가  제공하는 구조를 서비스로 구현",
+      "사용자의 흥미와 몰입도를 높이도록하는 인터랙티브 UI/UX 설계",
     ],
     skill: [
       {
-        title: "backend",
-        list: ["Spring Boot", "JPA", "JWT", "OAuth2"],
+        title: "Backend",
+        list: "Spring Boot, JPA, JWT, OAuth2",
       },
       {
         title: "Frontend",
-        list: ["React", "TypeScript", "Tailwind CSS", "shadcn"],
+        list: "React, TypeScript, Tailwind CSS, shadcn"
       },
       {
         title: "AI",
-        list: ["OpenAI (GPT) API"],
+        list: "OpenAI (GPT) API",
       },
       {
         title: "Infra",
-        list: [" AWS EC2", "MySQL"],
+        list: " AWS EC2, MySQL",
       },
     ],
-    member: null,
-    core: [
+    member:
+    {
+      count: "총 1명 (개인 프로젝트)",
+      myrole: [
+        "서비스 기획, 시스템 설계, 프론트엔드 및 백엔드 개발, 배포 전 과정 진행",
+      ],
+    },
+    feature: [
       "GPT API를 서비스 로직에 통합하여 카드·질문·해석 흐름을 서버에서 조합",
       "사용자 인터랙션을 고려한 카드 선택 및 결과 노출 UI 구현",
       "비회원/회원 사용 흐름을 고려한 인증 구조 설계",
@@ -71,40 +84,39 @@ const projectList = [
     type: "팀",
     title: "장고-리액트 웹 프로젝트",
     name: "부산 축제 정보",
-    info: "공공데이터 API를 활용해 부산 지역 축제 정보를 수집·정제하여 제공하는 웹 서비스입니다",
+    overview: "공공데이터 API를 활용해 부산 지역 축제 정보를 수집·정제하여 제공하는 웹 서비스입니다",
     goal: [
       "프론트엔드는 사용자에게 부산 축제 정보를 직관적으로 제공",
       "백엔드는 공공데이터를 수집·정제하여 관리 가능한 데이터로 제공",
     ],
     skill: [
       {
-        title: "backend",
-        list: ["Django", "Django REST Framework"],
+        title: "Backend",
+        list: "Django, Django REST Framework",
       },
       {
         title: "Frontend",
-        list: ["React", "TypeScript", "Tailwind CSS", "shadcn"],
+        list: "React, TypeScript, Tailwind CSS, shadcn"
       },
       {
         title: "Data",
-        list: ["공공데이터 API"],
+        list: "공공데이터 API"
       },
       {
         title: "Infra",
-        list: ["AWS EC2", "MySQL"],
+        list: "AWS EC2, MySQL"
       },
     ],
-    member: [
-      {
-        count: "총 2명 (프론트엔드 1명/백엔드 1명)",
-        myrole: [
-          "백엔드 전반 담당",
-          "데이터 수집·정제·관리 구조 설계 및 구현",
-          "관리자 중심 데이터 관리 기능 및 API 제공",
-        ],
-      },
-    ],
-    core: [
+    member:
+    {
+      count: "총 2명 (프론트엔드 1명/백엔드 1명)",
+      myrole: [
+        "백엔드 전반 담당",
+        "데이터 수집·정제·관리 구조 설계 및 구현",
+        "관리자 중심 데이터 관리 기능 및 API 제공",
+      ],
+    },
+    feature: [
       "공공데이터 API 분석 및 데이터 수집 로직 구현",
       "데이터 정규화를 고려한 DB 모델 설계 및 데이터 관리 정책 수립",
       "Django Admin의 장점을 활용하여 관리자가 데이터를 조회·수정·삭제할 수 있는 관리 기능 구현",
@@ -144,38 +156,37 @@ const projectList = [
     type: "팀",
     title: "스프링부트 웹 프로젝트",
     name: "애니모리",
-    info: "지역 기반 반려동물 커뮤니티 서비스로, 반려동물 관련 정보 공유와 소통을 목적으로 한 회원제 웹 서비스입니다. 공지사항, 커뮤니티, 중고장터, 산책 메이트 모집, 시터 구인·구직 게시판을 제공합니다.",
+    overview: "지역 기반 반려동물 커뮤니티 서비스로, 반려동물 관련 정보 공유와 소통을 목적으로 한 회원제 웹 서비스입니다. 공지사항, 커뮤니티, 중고장터, 산책 메이트 모집, 시터 구인·구직 게시판을 제공합니다.",
     goal: [
       "관리자는 어드민을 통해 공지사항을 작성·관리",
       "회원은 등급(역할)에 따라 게시판 성격에 맞게 기능을 이용 (게시판별로 작성·수정·삭제 권한 차등 제공)",
     ],
     skill: [
       {
-        title: "backend",
-        list: ["Spring Boot", "JPA"],
+        title: "Backend",
+        list: "Spring Boot, JPA"
       },
       {
         title: "Frontend",
-        list: ["Thymeleaf", "Bootstrap"],
+        list: "Thymeleaf, Bootstrap"
       },
       {
         title: "Database",
-        list: ["MySQL"],
+        list: "MySQL",
       },
     ],
-    member: [
-      {
-        count: "총 5명 (기능 단위로 역할 분담)",
-        myrole: [
-          "팀장 및 시터 구인·구직 게시판 구현",
-          "팀원들이 학습한 내용을 각자 서비스 기능으로 구현할 수 있도록 기능 단위 역할 분담 및 구조 정리",
-          "GitHub 브랜치를 활용한 코드 공유 및 병합 과정 관리",
-          "사용자 화면과 관리자 화면의 기본 템플릿(레이아웃) 구성",
-          "개인적으로 시터 구인·구직 게시판 기능 구현 담당",
-        ],
-      },
-    ],
-    core: [
+    member:
+    {
+      count: "총 5명 (기능 단위로 역할 분담)",
+      myrole: [
+        "팀장 및 시터 구인·구직 게시판 구현",
+        "팀원들이 학습한 내용을 각자 서비스 기능으로 구현할 수 있도록 기능 단위 역할 분담 및 구조 정리",
+        "GitHub 브랜치를 활용한 코드 공유 및 병합 과정 관리",
+        "사용자 화면과 관리자 화면의 기본 템플릿(레이아웃) 구성",
+        "개인적으로 시터 구인·구직 게시판 기능 구현 담당",
+      ],
+    },
+    feature: [
       "회원가입 및 로그인 기능 구현",
       "반려동물 시터 구인·구직 게시판 구현 (회원 역할에 따라 게시글 및 댓글 작성 기능을 차등 제공)",
     ],
@@ -203,27 +214,198 @@ const projectList = [
   },
 ];
 
-const ProjectSummary = (idx: number) => {
-  return (
-    <div className="w-full h-full">
-      <div className="text_wrap px-4 pt-16 lg:pt-20 ">
-        <div className="title mb-6 lg:mb-10 ff_rix text-accent">
-          <h2 className="text-4xl lg:text-6xl text-nowrap">
-            Project 0{idx + 1}
-          </h2>
-        </div>
-        <h3>{projectList[idx].title}</h3>
-      </div>
-      <div className="img_wrap w-full aspect-4/3 bg-accent/10"></div>
-    </div>
-  );
-};
+
 
 export default function Project() {
+  const ProjectSummary = (idx: number) => {
+    const project = projectList[idx]
+    const ltToRt = idx % 2 == 0
+
+    return (
+      <div className="relative w-full h-full" style={{ minHeight: "100dvh" }}>
+        <div className={`px-4 py-16 lg:py-20 lg:w-1/2 h-full ${!ltToRt && 'lg:absolute lg:right-0'}`}>
+          <div className="title mb-6 lg:mb-10 ff_rix text-accent">
+            <h2 className="text-4xl lg:text-6xl text-nowrap">
+              Project 0{idx + 1}
+            </h2>
+          </div>
+          <div className="content space-y-6 tracking-tight text-accent">
+            <div className="project_title">
+              <h3 className="text-xl leading-tight break-keep">
+                <Badge variant="secondary" className="align-text-top mt-0.5 me-1 text-white bg-blue-600/50">
+                  {project.type}
+                </Badge>
+                <span className="text-blue-300 font-bold text-nowrap">{"{"} {project.name} {"}"}</span>{" "}
+                {project.title}
+              </h3>
+              <p className="pt-2">{project.overview}</p>
+            </div>
+
+            <div className={`w-full h-96 lg:absolute lg:w-[50dvw] lg:h-full lg:top-0 ${ltToRt ? 'lg:left-1/2' : 'lg:left-0 lg:-translate-x-full'}`}>
+              <div className="img_wrap w-full h-full overflow-clip bg-accent/10">
+              </div>
+            </div>
+
+            <div className="text-sm">
+              <p className="mb-1 font-semibold opacity-60">인원 및 역할</p>
+              <ul className="space-y-1 list-disc ps-5">
+                <li>
+                  {project.member.count}
+                </li>
+
+                {project.type == "개인" ?
+                  (project.member.myrole.map((r, idx) => {
+                    return (
+                      <li key={idx}>{r}</li>
+                    )
+                  }))
+                  :
+                  (<li>내 역할
+                    <ul className="list-decimal ps-5">
+                      {project.member.myrole.map((r, idx) => {
+                        return (
+                          <li key={idx}>{r}</li>
+                        )
+                      })}
+                    </ul>
+                  </li>)}
+              </ul>
+            </div>
+
+            <div className="text-sm">
+              <p className="mb-1 font-semibold opacity-60">사용 기술</p>
+              <ul className="space-y-1 list-disc ps-5">
+                {project.skill.map((s, idx) => {
+                  const lang = s.title
+                  const skill = s.list
+                  return (
+                    <li key={idx}>
+                      <ul>
+                        <li>{lang} : {skill}</li>
+                      </ul>
+                    </li>)
+                })}
+              </ul>
+            </div>
+
+            <div className="text-sm">
+              <p className="mb-1 font-semibold opacity-60">핵심 구현</p>
+              <ul className="space-y-1 list-disc ps-5">
+                {project.feature.map((f, idx) => {
+                  return (
+                    <li key={idx}>
+                      <ul>
+                        <li>{f}</li>
+                      </ul>
+                    </li>)
+                })}
+              </ul>
+            </div>
+
+            <div className="w-full">
+              <ul className="flex justify-center lg:justify-start flex-wrap gap-2 text-primary">
+                <li>
+                  <Button variant="outline" size="sm" onClick={() => window.open(project.link, "_blank",)}>
+                    <Search /> 프로젝트 자세히 보기
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="outline" size="sm" onClick={() => window.open(project.github, "_blank",)}>
+                    <Github /> github source
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="outline" size="sm" onClick={() => window.open(project.link, "_blank",)}>
+                    <Link /> 서비스 바로가기
+                  </Button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div >
+    );
+  };
+
+  const ProjectDetail = (idx: number) => {
+    const project = projectList[idx]
+
+    return (
+      <div className="w-full h-full">
+        <div className="text_wrap px-4 pt-16 lg:pt-20 ">
+          <div className="title mb-6 lg:mb-10 ff_rix text-accent">
+            <h2 className="text-4xl lg:text-6xl text-nowrap">
+              Project 0{idx + 1}
+            </h2>
+          </div>
+          <div className="content tracking-tight text-accent">
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary" className="text-white bg-blue-600/50">
+                {project.type}
+              </Badge>
+              <h3 className="text-xl">{project.title} : <span className="font-semibold">{project.name}</span></h3>
+            </div>
+            <ul className="list-decimal ps-5 pt-4 space-y-4 text-sm">
+              <li>
+                <p className="mb-2"><b className="font-bold">Overview</b> <span className="opacity-50">서비스 소개</span></p>
+                <ul className="space-y-1">
+                  <li>{project.overview}</li>
+                </ul>
+              </li>
+              <li>
+                <p className="mb-2"><b className="font-bold">Project Goal</b> <span className="opacity-50">프로젝트 목표</span></p>
+                <ul className="space-y-1 list-disc ps-4">
+                  {project.goal.map((g, idx) => { return (<li key={idx}>{g}</li>) })}
+                </ul>
+              </li>
+              <li>
+                <p className="mb-2"><b className="font-bold">Technologies</b> <span className="opacity-50">사용 기술</span></p>
+                <ul className="space-y-1 list-disc ps-4">
+                  {project.skill.map((s, idx) => {
+                    const lang = s.title
+                    const skill = s.list
+                    return (
+                      <li key={idx}>
+                        <ul>
+                          <li>{lang} : {skill}</li>
+                        </ul>
+                      </li>)
+                  })}
+                </ul>
+              </li>
+              <li>
+                <p className="mb-2"><b className="font-bold">Features</b> <span className="opacity-50">핵심 구현</span></p>
+                <ul className="space-y-1 list-disc ps-4">
+                  {project.feature.map((f, idx) => {
+                    return (
+                      <li key={idx}>
+                        <ul>
+                          <li>{f}</li>
+                        </ul>
+                      </li>)
+                  })}
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="img_wrap rounded-xl overflow-clip">
+          <div className="w-full aspect-4/3 bg-accent/10"></div>
+        </div>
+      </div >
+    );
+  };
+
   return (
     <>
-      <section id="project" className="" style={{ minHeight: "100dvh" }}>
+      <section id="project">
         {ProjectSummary(0)}
+      </section>
+      <section>
+        {ProjectSummary(1)}
+      </section>
+      <section>
+        {ProjectSummary(2)}
       </section>
     </>
   );

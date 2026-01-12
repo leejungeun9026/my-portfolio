@@ -22,8 +22,7 @@ export default function Navbar() {
             ["Home", "#hero"],
             ["About", "#about"],
             ["Skill", "#skill"],
-            ["Project", "#project"],
-            ["Contact", "#contact"],
+            ["Project", "#project"]
           ].map(([label, target]) => (
             <li
               key={target}
